@@ -1,6 +1,5 @@
 package main.java.com.mobli.interview.broker;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,18 +11,19 @@ public class MessageBrokerImpl implements MessageBroker {
 	private Map<String, SmsConsumer> subscribers = new HashMap<String,SmsConsumer>();
 	
 	@Override
-    public void synchronized addSubscriber(SmsConsumer consumer) {
+    public synchronized void addSubscriber(SmsConsumer consumer) {
 			this.subscribers.put(getClassName(consumer),consumer);
     }
 
     @Override
-    public void synchronized removeSubscriber(SmsConsumer consumer) {
+    public synchronized void removeSubscriber(SmsConsumer consumer) {
 			this.subscribers.remove(getClassName(consumer),consumer);
     }
 
     @Override
     public void receive(SmsMessage message) {
-
+    	for (Map.Entry<String,SmsConsumer> entry : this.subscribers.entrySet())
+    		entry.getValue().consume(message);
     }
 
     @Override
