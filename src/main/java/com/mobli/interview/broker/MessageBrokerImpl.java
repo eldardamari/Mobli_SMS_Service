@@ -9,16 +9,16 @@ import main.java.com.mobli.interview.data.SmsMessage;
 
 public class MessageBrokerImpl implements MessageBroker {
     
-	public Map<String, SmsConsumer> subscribers = new HashMap<String,SmsConsumer>();
+	private Map<String, SmsConsumer> subscribers = new HashMap<String,SmsConsumer>();
 	
 	@Override
-    public void addSubscriber(SmsConsumer consumer) {
+    public void synchronized addSubscriber(SmsConsumer consumer) {
 			this.subscribers.put(getClassName(consumer),consumer);
     }
 
     @Override
-    public void removeSubscriber(SmsConsumer consumer) {
-
+    public void synchronized removeSubscriber(SmsConsumer consumer) {
+			this.subscribers.remove(getClassName(consumer),consumer);
     }
 
     @Override
