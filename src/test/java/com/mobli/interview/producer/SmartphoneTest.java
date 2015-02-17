@@ -18,7 +18,7 @@ public class SmartphoneTest {
     public void testSendSmsMessages() throws Exception {
     	
         final int numberOfMessagesPerSmartphone = 50;
-        MessageBroker broker = new MessageBrokerImpl();
+        MessageBroker broker = MessageBrokerImpl.getInstance();
 
         PrintService printService = new PrintService();
         WordCountService wordCountService = new WordCountServiceImpl();
