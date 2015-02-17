@@ -1,7 +1,7 @@
 package main.java.com.mobli.interview.consumer;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import main.java.com.mobli.interview.data.SmsMessage;
 
@@ -10,7 +10,7 @@ public class WordCountServiceImpl implements WordCountService {
 	private Map<String, Integer> totalWords;
 	
 	public WordCountServiceImpl() {
-		this.totalWords = new ConcurrentHashMap<String, Integer>();
+		this.totalWords = new HashMap<String, Integer>();
 	}
 	
 	
@@ -22,13 +22,14 @@ public class WordCountServiceImpl implements WordCountService {
         return this.totalWords;
     }
     
+    
     /**
-     * Receive new message from broker and save words in totalWords, after lower case.
+     * Receive new message from broker and save words in totalWords, after word lower case.
      * Thread safe due to ConcurrentHashMap totalWords type.
      * @param message
      */
     @Override
-    public void consume(SmsMessage message) {
+    public synchronized void consume(SmsMessage message){
     		
     	String splited[] = message.getText().split(" ");
     		
