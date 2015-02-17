@@ -41,5 +41,7 @@ public class SmartphoneTest {
         Map<String, Integer> totalWords = wordCountService.getTotalWords();
         int wordCounter = totalWords.get("quick");
         Assert.assertEquals((numberOfMessagesPerSmartphone * 3), wordCounter);
+        wordCounter = totalWords.get("brown");
+        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), wordCounter);
     }
 }
