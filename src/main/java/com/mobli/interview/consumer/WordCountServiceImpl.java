@@ -20,6 +20,7 @@ public class WordCountServiceImpl implements WordCountService {
     	String splited[] = message.getText().split(" ");
     		
     		for (String word : splited) {
+                word = word.toLowerCase();
     			if (this.totalWords.containsKey(word))
     				this.totalWords.put(word,this.totalWords.get(word)+1);
     			else
