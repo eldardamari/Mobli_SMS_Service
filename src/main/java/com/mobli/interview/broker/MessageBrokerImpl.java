@@ -18,7 +18,7 @@ public class MessageBrokerImpl implements MessageBroker {
      * Singleton class helper only executed when the static method getInstance is invoked
      */
     private static class SingletonHelper{
-        private static final MessageBrokerImpl INSTANCE = new MessageBrokerImpl();
+    		private static final MessageBrokerImpl INSTANCE = new MessageBrokerImpl();
     }
      
     public static MessageBrokerImpl getInstance(){
