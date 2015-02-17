@@ -3,9 +3,15 @@ package main.java.com.mobli.interview.producer;
 import main.java.com.mobli.interview.broker.MessageBroker;
 import main.java.com.mobli.interview.data.SmsMessage;
 
-public class SimpleSmsProducer implements SmsProducer {
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
-    private MessageBroker broker;
+public class SimpleSmsProducer implements SmsProducer {
+	
+	private static Logger logger = Logger.getLogger(SimpleSmsProducer.class.getName());
+	static { logger.setLevel(Level.INFO);}
+    
+	private MessageBroker broker;
 
     public SimpleSmsProducer(MessageBroker broker) {
         this.broker = broker;
@@ -16,6 +22,7 @@ public class SimpleSmsProducer implements SmsProducer {
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
+            	logger.info("Sending Message: " + message.getText());
                 broker.receive(message);
             }
         };
