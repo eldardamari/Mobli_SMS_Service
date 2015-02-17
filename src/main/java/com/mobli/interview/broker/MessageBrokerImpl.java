@@ -61,7 +61,7 @@ public class MessageBrokerImpl implements MessageBroker {
     }
     
     /**
-     * Receive class name, used to save as key in subscribers HashMap 
+     * Return class name, used to save as key in subscribers HashMap 
      * @param c
      */
     private String getClassName(SmsConsumer c) {
