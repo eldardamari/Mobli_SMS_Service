@@ -5,6 +5,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import main.java.com.mobli.interview.consumer.SmsConsumer;
 import main.java.com.mobli.interview.data.SmsMessage;
+import main.java.com.mobli.interview.exception.MessageTransferException;
 
 public class MessageBrokerImpl implements MessageBroker {
     
@@ -20,9 +21,14 @@ public class MessageBrokerImpl implements MessageBroker {
     private static class SingletonHelper{
     		private static final MessageBrokerImpl INSTANCE = new MessageBrokerImpl();
     }
-     
-    public static MessageBrokerImpl getInstance(){
-        return SingletonHelper.INSTANCE;
+    
+    /**
+     * Returns only one instance of Broker
+     */     
+    public static MessageBrokerImpl getInstance() throws MessageTransferException{
+    	if (SingletonHelper.INSTANCE == null)
+    		throw new MessageTransferException("Error - Broker singleton memory allocation failed");
+    	return SingletonHelper.INSTANCE;
     }
 
 	

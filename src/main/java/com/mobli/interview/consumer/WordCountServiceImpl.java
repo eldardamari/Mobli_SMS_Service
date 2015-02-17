@@ -4,13 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 import main.java.com.mobli.interview.data.SmsMessage;
+import main.java.com.mobli.interview.exception.MessageTransferException;
 
 public class WordCountServiceImpl implements WordCountService {
 
 	private Map<String, Integer> totalWords;
 	
-	public WordCountServiceImpl() {
+	public WordCountServiceImpl() throws MessageTransferException {
 		this.totalWords = new HashMap<String, Integer>();
+		if (this.totalWords == null)
+    		throw new MessageTransferException("Error - Word counter memory allocation failed");
 	}
 	
 	
@@ -36,7 +39,7 @@ public class WordCountServiceImpl implements WordCountService {
     		for (String word : splited) {
                 word = word.toLowerCase();
     			if (this.totalWords.containsKey(word))
-    				this.totalWords.put(word,this.totalWords.get(word)+1);
+    				this.totalWords.put(word,this.totalWords.get(word) + 1);
     			else
     				this.totalWords.put(word,1);
     		}
