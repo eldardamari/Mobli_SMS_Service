@@ -39,14 +39,14 @@ public class SmartphoneTest {
         Thread.sleep(1000);
 
         Map<String, Integer> totalWords = wordCountService.getTotalWords();
-        int wordCounter = totalWords.get("quick");
-        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(wordCounter));
-        wordCounter = totalWords.get("brown");
-        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(wordCounter));
-        wordCounter = totalWords.get("brown");
-        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(wordCounter));
-
-
+        Assert.assertEquals((numberOfMessagesPerSmartphone * 3 * 2), ifNullToZero(totalWords.get("the")));
+        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(totalWords.get("quick")));
+        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(totalWords.get("brown")));
+        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(totalWords.get("fox")));
+        
+        Assert.assertEquals(0, ifNullToZero(totalWords.get("unSeen1")));
+        Assert.assertEquals(0, ifNullToZero(totalWords.get("")));
+        Assert.assertEquals(0, ifNullToZero(totalWords.get(null)));
     }
     
     private int ifNullToZero(Integer num) {
