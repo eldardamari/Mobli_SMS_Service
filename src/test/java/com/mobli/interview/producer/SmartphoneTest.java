@@ -40,8 +40,16 @@ public class SmartphoneTest {
 
         Map<String, Integer> totalWords = wordCountService.getTotalWords();
         int wordCounter = totalWords.get("quick");
-        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), wordCounter);
+        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(wordCounter));
         wordCounter = totalWords.get("brown");
-        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), wordCounter);
+        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(wordCounter));
+        wordCounter = totalWords.get("brown");
+        Assert.assertEquals((numberOfMessagesPerSmartphone * 3), ifNullToZero(wordCounter));
+
+
+    }
+    
+    private int ifNullToZero(Integer num) {
+    	return num == null ? 0 : num;
     }
 }
