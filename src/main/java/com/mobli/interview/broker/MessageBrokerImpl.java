@@ -14,7 +14,9 @@ public class MessageBrokerImpl implements MessageBroker {
         this.subscribers = new ConcurrentHashMap<String,SmsConsumer>();
     }
 
-    // Singleton Operation 
+    /**
+     * Singleton class helper only executed when the static method getInstance is invoked
+     */
     private static class SingletonHelper{
         private static final MessageBrokerImpl INSTANCE = new MessageBrokerImpl();
     }
