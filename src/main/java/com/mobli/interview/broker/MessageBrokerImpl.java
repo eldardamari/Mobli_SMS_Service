@@ -1,7 +1,7 @@
 package main.java.com.mobli.interview.broker;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import main.java.com.mobli.interview.consumer.SmsConsumer;
 import main.java.com.mobli.interview.data.SmsMessage;
@@ -11,7 +11,7 @@ public class MessageBrokerImpl implements MessageBroker {
 	private Map<String, SmsConsumer> subscribers;
     
     private MessageBrokerImpl() {
-        this.subscribers = new HashMap<String,SmsConsumer>();
+        this.subscribers = new ConcurrentHashMap<String,SmsConsumer>();
     }
 
     // Singleton Operation 
@@ -29,7 +29,7 @@ public class MessageBrokerImpl implements MessageBroker {
      * @param consumer The consumer that handles the received message.
      */
 	@Override
-    public synchronized void addSubscriber(SmsConsumer consumer) {
+    public void addSubscriber(SmsConsumer consumer) {
 			this.subscribers.put(getClassName(consumer),consumer);
     }
 
@@ -38,7 +38,7 @@ public class MessageBrokerImpl implements MessageBroker {
      * @param consumer
      */
     @Override
-    public synchronized void removeSubscriber(SmsConsumer consumer) {
+    public void removeSubscriber(SmsConsumer consumer) {
 			this.subscribers.remove(getClassName(consumer),consumer);
     }
 
