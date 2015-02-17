@@ -2,7 +2,6 @@ package main.java.com.mobli.interview.producer;
 
 import main.java.com.mobli.interview.broker.MessageBroker;
 import main.java.com.mobli.interview.data.SmsMessage;
-import main.java.com.mobli.interview.exception.MessageTransferException;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
